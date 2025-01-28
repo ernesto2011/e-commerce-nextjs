@@ -1,6 +1,21 @@
-import React from 'react'
+import { notFound } from "next/navigation"
 
-export default function CategoryByIdPage() {
+interface Props{
+  params:{
+    id:string
+  }
+
+}
+const validCategories =[
+  'men',
+  'women',
+  'kids',
+]
+
+export default function CategoryByIdPage({params}:Props) {
+  if(!validCategories.includes(params.id)){
+    notFound();
+  }
   return (
     <div>CategoryByIdPage</div>
   )

@@ -5,7 +5,9 @@ export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <TopMenu />
-      {children}
+      <div className="px-0 sm:px-8">
+        {children}
+      </div>
     </>
   )
 }
