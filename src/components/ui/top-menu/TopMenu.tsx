@@ -11,7 +11,7 @@ export const TopMenu = () => {
         <div>
             <Link href='/'>
             <span className={`${titleFont.className} antialiased font-bold`}>Teslo</span>
-            <span>| Shop</span>
+            <span> | Shop</span>
             </Link>
         </div>
         <div className="hidden sm:block">
@@ -19,7 +19,7 @@ export const TopMenu = () => {
             </Link>
             <Link className="m-2 p-2 rounded-md transition-all hover:bg-gray-100" href={'/category/women'}>Mujeres
             </Link>
-            <Link className="m-2 p-2 rounded-md transition-all hover:bg-gray-100" href={'/category/kids'}>Niños
+            <Link className="m-2 p-2 rounded-md transition-all hover:bg-gray-100" href={'/category/kid'}>Niños
             </Link>
         </div>
         <div className="flex items-center">
