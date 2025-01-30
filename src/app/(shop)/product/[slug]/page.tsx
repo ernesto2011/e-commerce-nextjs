@@ -1,5 +1,6 @@
 import { titleFont } from "@/app/fonts/fonts";
-import { QuantitySelector, SizeSelector } from "@/components";
+import { QuantitySelector, SizeSelector, SlideShowMobile } from "@/components";
+import { SlideShow } from "@/components/product/slideshow/SlideShow";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
 
@@ -19,9 +20,10 @@ export default function ProductPage({params}:Props) {
   return (
     <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
       <div className="col-span-1 md:col-span-2">
-      hola mundo
+      <SlideShowMobile title={product.title} images={product.images} className="block sm:hidden"/>
+      <SlideShow title={product.title} className="hidden sm:block" images={product.images}/> 
       </div>
-      <div className="col-span-1 px-0  md:px-5">
+      <div className="col-span-1 px-2  md:px-5">
         <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>{product.title}</h1>
         <p className="text-lg mb-5">$ {product.price}</p>
         <SizeSelector selectedSize={product.sizes[0]} availableSizes={product.sizes} />
