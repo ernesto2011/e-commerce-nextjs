@@ -2,6 +2,7 @@ import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Mi carrito",
@@ -14,6 +15,9 @@ const productsInCart =[
   // initialData.products[3],
 ]
 export default function Cartpage() {
+  if(productsInCart.length === 0){
+    redirect('/empty')
+  }
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px] ">
