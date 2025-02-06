@@ -1,0 +1,1 @@
+export { getPaginateProductsWithImages} from './products/product-pagination'
