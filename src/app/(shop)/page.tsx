@@ -1,3 +1,4 @@
+export const revalidate = 60
 import { getPaginateProductsWithImages } from '@/actions';
 import { ProductGrid, Title } from '@/components'
 import { Pagination } from '@/components';
@@ -12,7 +13,7 @@ interface Props {
 
 export default async function page({searchParams}:Props) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1
-  const {products, currentPage, totalPages} = await getPaginateProductsWithImages({page})
+  const {products, totalPages} = await getPaginateProductsWithImages({page})
   if(products.length === 0){
     redirect('/')
   }

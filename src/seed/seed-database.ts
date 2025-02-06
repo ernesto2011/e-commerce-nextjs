@@ -3,11 +3,9 @@ import {prisma} from '../lib/prisma'
 
 async function main(){
     console.log('clean database');
-    
-    
-    await prisma.productImage.deleteMany(),
-    await prisma.product.deleteMany(),
-    await prisma.category.deleteMany(),
+    await prisma.productImage.deleteMany();
+    await prisma.product.deleteMany();
+    await prisma.category.deleteMany();
     
     console.log('cleaned database<<<<>>>>');
     const {categories, products}= initialData
@@ -42,5 +40,6 @@ async function main(){
 }
 
 (()=>{
+    if ( process.env.NODE_ENV === 'production' ) return;
     main();
 })();

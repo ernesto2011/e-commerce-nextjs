@@ -12,7 +12,7 @@ export const Pagination = ({totalPages}:Props) => {
     const pathName = usePathname()
     const searchParams= useSearchParams()
     const pageString = searchParams.get('page')??1
-    let currentPage = isNaN(+pageString) ? 1: +pageString;
+    const currentPage = isNaN(+pageString) ? 1: +pageString;
     if(currentPage < 1 || isNaN(+pageString)) {
         redirect(pathName)
     }

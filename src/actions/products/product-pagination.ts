@@ -44,6 +44,7 @@ export const getPaginateProductsWithImages = async ({page=1, take=12, gender}:Pa
       }
       
     } catch (error) {
-        throw new Error('Error al obtener los productos')
+        console.log(error);
+        throw new Error('Error al obtener los productos')   
     }
 }

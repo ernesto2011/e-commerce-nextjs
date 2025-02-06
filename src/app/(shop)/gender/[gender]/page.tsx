@@ -1,7 +1,8 @@
+export const revalidate= 60;
 import { getPaginateProductsWithImages } from "@/actions";
 import { Pagination, ProductGrid, Title } from "@/components";
 import { Gender } from "@prisma/client";
-import { notFound, redirect } from "next/navigation"
+import { redirect } from "next/navigation"
 
 interface Props{
   params:{
@@ -26,7 +27,7 @@ export default async function CategoryByIdPage({searchParams, params}:Props) {
   //   notFound();
   // }
     const page = searchParams.page ? parseInt(searchParams.page) : 1
-    const {products, currentPage, totalPages} = await getPaginateProductsWithImages({page, gender:gender as Gender})
+    const {products, totalPages} = await getPaginateProductsWithImages({page, gender:gender as Gender})
     if(products.length === 0){
       redirect(`/gender/${gender}`)
     }
