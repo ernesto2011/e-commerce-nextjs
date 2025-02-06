@@ -11,8 +11,8 @@ export const metadata = {
 const productsInCart =[
   initialData.products[0],
   initialData.products[1],
-  // initialData.products[2],
-  // initialData.products[3],
+  initialData.products[2],
+  initialData.products[3],
 ]
 export default function Cartpage() {
   if(productsInCart.length === 0){
@@ -45,7 +45,7 @@ export default function Cartpage() {
             ))
           }
           </div>
-          <div className="bg-white rounded-xl shadow-xl p-7">
+          <div className="bg-white rounded-xl shadow-xl p-7 h-fit">
             <h1 className="text-2xl font-bold">Resumen de pedido</h1>
             <div className="grid grid-cols-2">
               <span>No. de productos</span>
