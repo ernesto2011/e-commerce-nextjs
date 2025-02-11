@@ -1,4 +1,5 @@
 'use client'
+import { logout } from "@/actions"
 import { useUIStore } from "@/store"
 import clsx from "clsx"
 import Link from "next/link"
@@ -42,8 +43,9 @@ export const Sidebar = () => {
           <input className="w-full bg-gray-50 py-1 pl-10 pr-10 border-b-2 text-xl border-gray-200 focus:outline-none focus:border-blue-500 " type="text" placeholder="buscar..." />
         </div>
         <Link 
+        onClick={closeMenu}
         className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
-        href='/'>
+        href='/profile'>
           <IoPersonOutline size={30}/>
           <span className="ml-2 text-xl ">Perfil</span>
         </Link>
@@ -55,16 +57,17 @@ export const Sidebar = () => {
         </Link>
         <Link 
         className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
-        href='/'>
+        href='/auth/login'>
           <IoLogInOutline size={30}/>
           <span className="ml-2 text-xl ">Ingresar</span>
         </Link>
-        <Link 
-        className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
-        href='/'>
+        <button
+        className="flex w-full items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
+        onClick={()=>logout()}
+        >
           <IoLogOutOutline size={30}/>
           <span className="ml-2 text-xl ">Salir</span>
-        </Link>
+        </button>
         <div className="w-full h-px bg-gray-300 my-10"/>
         <Link 
         className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"

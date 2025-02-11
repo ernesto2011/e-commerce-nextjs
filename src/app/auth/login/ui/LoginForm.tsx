@@ -1,13 +1,22 @@
 'use client'
 
 import { authenticate } from "@/actions";
+import clsx from "clsx";
 import Link from "next/link"
-import { useFormState } from "react-dom";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
+import { IoInformationCircleOutline } from "react-icons/io5";
 
  
  export const LoginForm = () => {
     const [state, dispatch] = useFormState(authenticate,undefined,);
-    console.log({state});
+    
+    useEffect(()=>{
+        if(state === 'Success'){
+            redirect('/')
+        }
+    },[state])
     
    return (
     <form action={dispatch} className="flex flex-col">
@@ -25,12 +34,18 @@ import { useFormState } from "react-dom";
       type="password"
       name="password"
       />
-
-    <button
+     {state === 'CredentialsSignin' && (
+            <div className="flex flex-row justify-center items-center gap-1 mb-4">
+              <IoInformationCircleOutline className="h-5 w-5 text-red-500" />
+              <p className="text-sm text-red-500">Credenciales inválidas</p>
+            </div>
+          )}
+    {/* <button
       type="submit"
       className="btn-primary">
       Ingresar
-    </button>
+    </button> */}
+    <LoginButton />
 
 
     {/* divisor l ine */ }
@@ -49,4 +64,31 @@ import { useFormState } from "react-dom";
   </form>
    )
  }
+ function LoginButton() {
+    const {pending} = useFormStatus()
+  return (
+    <button
+      type="submit"
+      className={
+        clsx({
+            'btn-primary': !pending,
+            'bg-gray-500 text-white py-2 px-4 rounded transition-all':pending
+        })
+      }
+      disabled={pending}
+      >
+        {pending ? 
+        (
+            
+            <div className="flex flex-row gap-2 justify-center items-center">
+                <div className="border-gray-300 h-6 w-6 animate-spin rounded-full border-4 border-t-white" />
+                validando
+            </div>
+
+        )
+        : 
+        'Ingresar'}
+    </button>
+  );
+}
  
