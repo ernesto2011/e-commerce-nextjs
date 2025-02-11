@@ -15,10 +15,10 @@ export async function authenticate(
         });
         return 'Success';
     } catch (error) {
-        if((error as any).type === 'CredentialsSignin'){
+        //if((error as any).type === 'CredentialsSignin'){
             return 'CredentialsSignin'
-        }
-        return 'UnknownError';
+        //}
+        //return 'UnknownError';
         
     }
 }

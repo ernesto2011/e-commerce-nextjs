@@ -8,6 +8,11 @@ import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPer
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore(state => state.isSideMenuOpen)
   const closeMenu = useUIStore(state => state.closeSideMenu)
+  const closeSession = ()=>{
+    logout()
+    closeMenu()
+ 
+  }
   return (
     <div>
       {
@@ -57,13 +62,14 @@ export const Sidebar = () => {
         </Link>
         <Link 
         className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
+        onClick={closeMenu}
         href='/auth/login'>
           <IoLogInOutline size={30}/>
           <span className="ml-2 text-xl ">Ingresar</span>
         </Link>
         <button
         className="flex w-full items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
-        onClick={()=>logout()}
+        onClick={closeSession}
         >
           <IoLogOutOutline size={30}/>
           <span className="ml-2 text-xl ">Salir</span>
