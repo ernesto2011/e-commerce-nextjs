@@ -3,7 +3,6 @@
 import { authenticate } from "@/actions";
 import clsx from "clsx";
 import Link from "next/link"
-import { redirect } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { IoInformationCircleOutline } from "react-icons/io5";
@@ -14,7 +13,8 @@ import { IoInformationCircleOutline } from "react-icons/io5";
     
     useEffect(()=>{
         if(state === 'Success'){
-            redirect('/')
+            //redirect('/')
+            window.location.replace('/')
         }
     },[state])
     

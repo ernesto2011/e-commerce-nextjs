@@ -2,17 +2,24 @@
 import { logout } from "@/actions"
 import { useUIStore } from "@/store"
 import clsx from "clsx"
+import { signOut, useSession } from "next-auth/react"
 import Link from "next/link"
 import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore(state => state.isSideMenuOpen)
   const closeMenu = useUIStore(state => state.closeSideMenu)
+
+  const { data:session}= useSession();
+  const isAuthenticated = !!session?.user;
+  const isAdmin = session?.user.role === 'admin';
+
   const closeSession = ()=>{
-    logout()
+    //logout()
     closeMenu()
- 
+    signOut({redirect:false})
   }
+
   return (
     <div>
       {
@@ -47,7 +54,10 @@ export const Sidebar = () => {
           <IoSearchOutline size={20} className="absolute top-2 left-2" />
           <input className="w-full bg-gray-50 py-1 pl-10 pr-10 border-b-2 text-xl border-gray-200 focus:outline-none focus:border-blue-500 " type="text" placeholder="buscar..." />
         </div>
-        <Link 
+        {
+          isAuthenticated && (
+            <>
+                    <Link 
         onClick={closeMenu}
         className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
         href='/profile'>
@@ -60,22 +70,37 @@ export const Sidebar = () => {
           <IoTicketOutline size={30}/>
           <span className="ml-2 text-xl ">Órdenes</span>
         </Link>
-        <Link 
-        className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
-        onClick={closeMenu}
-        href='/auth/login'>
-          <IoLogInOutline size={30}/>
-          <span className="ml-2 text-xl ">Ingresar</span>
-        </Link>
-        <button
-        className="flex w-full items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
-        onClick={closeSession}
-        >
-          <IoLogOutOutline size={30}/>
-          <span className="ml-2 text-xl ">Salir</span>
-        </button>
-        <div className="w-full h-px bg-gray-300 my-10"/>
-        <Link 
+            </>
+          )
+        }
+
+        {
+          isAuthenticated &&(
+            <button
+            className="flex w-full items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
+            onClick={closeSession}
+            >
+              <IoLogOutOutline size={30}/>
+              <span className="ml-2 text-xl ">Salir</span>
+            </button>
+          )
+        }
+        {
+          !isAuthenticated &&(
+            <Link
+            className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
+            onClick={closeMenu}
+            href='/auth/login'>
+              <IoLogInOutline size={30}/>
+              <span className="ml-2 text-xl ">Ingresar</span>
+            </Link>
+          )
+        }
+        {
+          isAdmin &&(
+            <>
+            <div className="w-full h-px bg-gray-300 my-10"/>
+            <Link 
         className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
         href='/'>
           <IoShirtOutline size={30}/>
@@ -93,6 +118,10 @@ export const Sidebar = () => {
           <IoPeopleOutline size={30}/>
           <span className="ml-2 text-xl ">Usuarios</span>
         </Link>
+            </>
+          )
+        }
+        
       </nav>
     </div>
   )
