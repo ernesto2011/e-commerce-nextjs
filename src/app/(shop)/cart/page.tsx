@@ -2,7 +2,6 @@ import { Title } from "@/components";
 import Link from "next/link";
 import { ProductsInCart } from "./ui/ProductsInCart";
 import { OrderSumary } from "./ui/OrderSumary";
-import { useCartStore } from "@/store";
 
 export const metadata = {
   title: "Mi carrito",
@@ -10,7 +9,7 @@ export const metadata = {
 };
 
 export default function Cartpage() {
-  const productsInCart = useCartStore(state => state.getTotalItems())
+
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px] ">
