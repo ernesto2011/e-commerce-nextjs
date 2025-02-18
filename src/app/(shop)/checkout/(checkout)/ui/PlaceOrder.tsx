@@ -1,17 +1,22 @@
 'use client'
 
+import { placeOrder } from "@/actions"
 import { useAddressStore, useCartStore } from "@/store"
 import { currencyFormatter} from "@/utils"
 import clsx from "clsx"
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export const PlaceOrder = () => {
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
     const [isPlacingOreder, setIsPlacingOrder] = useState(false);
     const address = useAddressStore(state => state.address)
-        const { getSumaryInformation } = useCartStore()
-        const { totalItems, subTotal, tax, total } = getSumaryInformation()
-        const cart = useCartStore(state => state.cart);
+    const { getSumaryInformation } = useCartStore()
+    const { totalItems, subTotal, tax, total } = getSumaryInformation()
+    const cart = useCartStore(state => state.cart);
+    const clearCart = useCartStore(state => state.clearCart);
     useEffect(()=>{
         setLoading(true)
     },[])
@@ -24,9 +29,14 @@ export const PlaceOrder = () => {
                 size: product.size
             }
         })
-        console.log({address, productsinCart});
-        
-        setIsPlacingOrder(false)
+        const resp = await placeOrder(productsinCart, address)
+        if(!resp.ok){
+            setIsPlacingOrder(false)
+            setErrorMessage(resp.message)
+            return;
+        }
+        clearCart();
+        router.replace('/orders/'+ resp.order!.id)
     }
     if(!loading){
         return(
@@ -68,6 +78,7 @@ export const PlaceOrder = () => {
       <span className="mt-5 text-2xl text-right">{currencyFormatter(total)}</span>
     </div>
     <div className="mt-5 mb-2 w-full">
+        <p className="text-red-500">{errorMessage}</p>
       <button 
       onClick={onPlaceOrder}
       className={

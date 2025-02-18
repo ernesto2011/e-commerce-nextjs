@@ -7,11 +7,18 @@ export const deleteUserAddress = async(userId: string)=>{
         const address = await prisma.userAddress.delete({
             where: {userId}
         })
+        if(!address) return {
+            ok: false,
+            error: 'No hay dirección para ese usuario'
+        }
         return {
             ok: true,
         }
     } catch (error) {
         console.log(error)
-        throw new Error('Error al eliminar la dirección')
+        return {
+            ok: false,
+            error: 'No se pudo eliminar la dirección'
+        }
     }
 }
