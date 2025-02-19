@@ -86,7 +86,7 @@ export default async function OrderByIdPage({params}:Props) {
               <span className="mt-5 text-2xl text-right">{currencyFormatter(order!.total)}</span>
             </div>
             <div className="mt-5 mb-2 w-full">
-            <PayPalButton />
+            <PayPalButton amount={order!.total} orderId={order!.id} />
             </div>
           </div>
         </div>
