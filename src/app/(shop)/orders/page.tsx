@@ -2,7 +2,6 @@ export const revalidate = 0;
 // https://tailwindcomponents.com/component/hoverable-table
 import { getOrdersByUser } from '@/actions';
 import { Title } from '@/components';
-
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { IoCardOutline } from 'react-icons/io5';
