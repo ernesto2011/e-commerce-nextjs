@@ -4,6 +4,7 @@ import { useUIStore } from "@/store"
 import clsx from "clsx"
 import { signOut, useSession } from "next-auth/react"
 import Link from "next/link"
+import { redirect } from "next/navigation"
 import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
 
 export const Sidebar = () => {
@@ -17,7 +18,8 @@ export const Sidebar = () => {
   const closeSession = ()=>{
     //logout()
     closeMenu()
-    signOut({redirect:false})
+    signOut()
+    redirect('/')
   }
 
   return (
@@ -108,8 +110,9 @@ export const Sidebar = () => {
           <span className="ml-2 text-xl ">Productos</span>
         </Link>
         <Link 
+        onClick={closeMenu}
         className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
-        href='/'>
+        href='/admin/orders'>
           <IoTicketOutline size={30}/>
           <span className="ml-2 text-xl ">Órdenes</span>
         </Link>

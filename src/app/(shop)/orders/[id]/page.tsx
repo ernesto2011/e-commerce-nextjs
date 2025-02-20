@@ -1,4 +1,5 @@
 import { getOrderById } from "@/actions";
+import { auth } from "@/auth.config";
 import { PayPalButton, Title, OrderStatus } from "@/components";
 import { currencyFormatter } from "@/utils";
 import Image from "next/image";
@@ -12,6 +13,7 @@ interface Props {
 
 export default async function OrderByIdPage({params}:Props) {
   const  { id }= params;
+  const session = await auth()
   const {ok, order} = await getOrderById(id)
   if(!ok){
     redirect('/')
@@ -72,6 +74,7 @@ export default async function OrderByIdPage({params}:Props) {
                 order?.isPaid ? (
                   <OrderStatus isPaid={order!.isPaid} />
                 ) :(
+                  session?.user.role !== 'admin' &&
                   <PayPalButton amount={order!.total} orderId={order!.id} />
                 )
               }
