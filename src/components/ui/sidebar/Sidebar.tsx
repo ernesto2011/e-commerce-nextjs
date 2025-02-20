@@ -117,8 +117,9 @@ export const Sidebar = () => {
           <span className="ml-2 text-xl ">Órdenes</span>
         </Link>
         <Link 
+        onClick={closeMenu}
         className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
-        href='/'>
+        href='/admin/users'>
           <IoPeopleOutline size={30}/>
           <span className="ml-2 text-xl ">Usuarios</span>
         </Link>
