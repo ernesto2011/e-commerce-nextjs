@@ -3,7 +3,6 @@ import { useUIStore } from "@/store"
 import clsx from "clsx"
 import { signOut, useSession } from "next-auth/react"
 import Link from "next/link"
-import { redirect } from "next/navigation"
 import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
 
 export const Sidebar = () => {
@@ -14,12 +13,11 @@ export const Sidebar = () => {
   const isAuthenticated = !!session?.user;
   const isAdmin = session?.user.role === 'admin';
 
-  const closeSession = ()=>{
+  const closeSession = async()=>{
     //logout()
     closeMenu()
-    signOut()
+    await signOut({ callbackUrl: '/' })
     localStorage.clear()
-    redirect('/')
   }
 
   return (
