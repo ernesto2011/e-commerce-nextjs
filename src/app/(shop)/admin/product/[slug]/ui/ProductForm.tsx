@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { createUpdateProduct, deleteProductImage } from "@/actions";
 import { useRouter } from 'next/navigation';
 import { ProductImage } from '@/components';
+import { toast } from "react-toastify";
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductWithImage[] };
@@ -35,7 +36,7 @@ export const ProductForm = ({ product, categories }: Props) => {
   const {
     handleSubmit,
     register,
-    formState: { isValid },
+    //formState: { isValid },
     getValues,
     setValue,
     watch,
@@ -87,10 +88,14 @@ export const ProductForm = ({ product, categories }: Props) => {
     const { ok, product:updatedProduct } = await createUpdateProduct(formData);
 
     if ( !ok ) {
-      alert('Producto no se pudo actualizar');
+      toast.error('Producto no se pudo actualizar');
       return;
     }
-
+    if(product.id){
+      toast.success("!Producto actualizado correctamente!");
+    }else{
+      toast.success("!Producto creado correctamente!");
+    }
     router.replace(`/admin/product/${ updatedProduct?.slug }`)
 
 

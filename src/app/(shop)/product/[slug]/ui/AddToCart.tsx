@@ -3,6 +3,7 @@ import { QuantitySelector, SizeSelector } from "@/components"
 import { CartProduct, Product, Size } from "@/interfaces"
 import { useCartStore } from "@/store"
 import { useState } from "react"
+import { toast } from "react-toastify"
 interface Props{
     product:Product
 }
@@ -28,6 +29,7 @@ export const AddToCart = ({product}:Props) => {
         setPosted(false);
         setQuantity(1);
         setSize(undefined);
+        toast.success('Producto agregado al carrito correctamente')
 
     }
   return (

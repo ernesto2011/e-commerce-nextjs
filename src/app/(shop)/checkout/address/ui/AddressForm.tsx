@@ -27,7 +27,7 @@ export const AddressForm = ({countries, userStoreAddress={}}:Props) => {
   const router = useRouter()
     const {handleSubmit, register, formState:{isValid}, reset} = useForm<FormInputs>({
       defaultValues:{
-        ...userStoreAddress as any,
+        ...userStoreAddress as Address,
         rememberAddress: false
       }
     });
@@ -40,7 +40,7 @@ export const AddressForm = ({countries, userStoreAddress={}}:Props) => {
       if(address.firstName){
         reset(address)
       }
-    }, [])
+    }, [address, reset])
     
     const onSubmit = async(data: FormInputs) => {
       const {rememberAddress, ...rest}= data;

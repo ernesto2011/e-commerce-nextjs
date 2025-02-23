@@ -1,6 +1,6 @@
 export const revalidate = 0;
 // https://tailwindcomponents.com/component/hoverable-table
-import { getAllUsers, getPaginatedOrders } from '@/actions';
+import { getAllUsers } from '@/actions';
 import { Title } from '@/components';
 import { redirect } from 'next/navigation';
 import { UsersTable } from './ui/UsersTable';

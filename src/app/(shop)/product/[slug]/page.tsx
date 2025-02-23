@@ -1,8 +1,8 @@
 import { getProductBySlug } from "@/actions";
 import { titleFont } from "@/app/fonts/fonts";
-import { GoBack, QuantitySelector, SizeSelector, SlideShowMobile, StockLabel } from "@/components";
+import { GoBack, SlideShowMobile, StockLabel } from "@/components";
 import { SlideShow } from "@/components/product/slideshow/SlideShow";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata} from "next";
 import { notFound } from "next/navigation";
 import { AddToCart } from "./ui/AddToCart";
 
@@ -13,7 +13,7 @@ interface Props{
 }
 export async function generateMetadata(
   { params }: Props,
-  parent: ResolvingMetadata
+  //parent: ResolvingMetadata
 ): Promise<Metadata> {
   // read route params
   const slug = params.slug

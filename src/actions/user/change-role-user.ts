@@ -28,6 +28,7 @@ export const changeRoleUser = async(id:string, role:string)=>{
             message: 'Rol cambiado correctamente'
         }
     } catch (error) {
+        console.log(error);
         return {
             ok: false,
             error: 'No se pudo cambiar el rol'

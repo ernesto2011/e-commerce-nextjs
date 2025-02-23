@@ -15,6 +15,7 @@ export async function authenticate(
         });
         return 'Success';
     } catch (error) {
+        console.log(error);
         //if((error as any).type === 'CredentialsSignin'){
             return 'CredentialsSignin'
         //}

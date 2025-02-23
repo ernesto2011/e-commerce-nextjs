@@ -1,10 +1,11 @@
 'use client'
 
 import { ProductImage, QuantitySelector } from "@/components"
+import { CartProduct } from "@/interfaces"
 import { useCartStore } from "@/store"
-import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
 
 export const ProductsInCart = () => {
     const updateProductInCart = useCartStore(state => state.updateProductQuantity)
@@ -14,6 +15,10 @@ export const ProductsInCart = () => {
     useEffect(()=> {
         setLoading(true)
     },[])
+    const handleDeleteProduct = (product:CartProduct)=>{
+      removeProductInCart(product)
+      toast.success('Producto eliminado del carrito correctamente')
+    }
     
     if(!loading){
         return(
@@ -35,7 +40,7 @@ export const ProductsInCart = () => {
               <div key={`${product.slug}- ${product.size}`} className="flex mb-5">
                 <ProductImage
                 style={{width:'100px', height:'100px'}}
-                src={`/products/${product.image}`} width={100}  height={100} alt={product.title} className="mr-5 rounded"/>
+                src={product.image} width={100}  height={100} alt={product.title} className="mr-5 rounded"/>
                 <div>
                   <Link 
                   className="hover:underline cursor-pointer"
@@ -47,7 +52,7 @@ export const ProductsInCart = () => {
                   <QuantitySelector quantity={product.quantity} onQuantityChanged={quantity=>updateProductInCart(product, quantity)
                   }/>
                   <button 
-                  onClick={()=>removeProductInCart(product)}
+                  onClick={()=>handleDeleteProduct(product)}
                   className="underline mt-3">Remover</button>
                 </div>
               </div>

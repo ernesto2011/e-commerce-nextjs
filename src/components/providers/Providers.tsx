@@ -2,6 +2,7 @@
 
 import { PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { SessionProvider } from "next-auth/react"
+import { ToastProvider } from "../ui/toast/ToastProvider"
 
 interface Props {
   children: React.ReactNode
@@ -16,6 +17,7 @@ export const Providers = ({children}:Props) => {
       currency: 'USD'
     }}>
       <SessionProvider>
+        <ToastProvider />
           {children}
       </SessionProvider>
     </PayPalScriptProvider>

@@ -15,7 +15,7 @@ export const ProductsInCart = () => {
         if(productsInCart.length === 0){
             router.replace('/empty')
         }
-    },[])
+    },[router, productsInCart])
     
     if(!loading){
         return(

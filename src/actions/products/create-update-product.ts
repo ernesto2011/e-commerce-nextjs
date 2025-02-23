@@ -37,6 +37,8 @@ export const createUpdateProduct = async(formData:FormData) =>{
     const {id,...rest} = product
     try {
         const prismaTx = await prisma.$transaction(async(tx)=>{
+            console.log(tx);
+            
             let product: Product;
             const tagsArray = rest.tags.split(',').map(tag=>tag.trim().toLowerCase())
             if(id){

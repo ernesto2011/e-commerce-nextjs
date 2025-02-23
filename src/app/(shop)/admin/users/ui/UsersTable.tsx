@@ -1,8 +1,6 @@
 'use client'
 import { changeRoleUser } from "@/actions";
 import type { User } from "@/interfaces"
-import Link from "next/link"
-import { IoCardOutline } from "react-icons/io5"
 interface Props {
     users:User[];
 }

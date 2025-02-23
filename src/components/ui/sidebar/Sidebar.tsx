@@ -1,5 +1,4 @@
 'use client'
-import { logout } from "@/actions"
 import { useUIStore } from "@/store"
 import clsx from "clsx"
 import { signOut, useSession } from "next-auth/react"

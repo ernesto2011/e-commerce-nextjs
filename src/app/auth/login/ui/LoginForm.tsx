@@ -1,11 +1,13 @@
 'use client'
 
 import { authenticate } from "@/actions";
+import { sleep } from "@/utils";
 import clsx from "clsx";
 import Link from "next/link"
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { IoInformationCircleOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 
  
  export const LoginForm = () => {
@@ -14,6 +16,7 @@ import { IoInformationCircleOutline } from "react-icons/io5";
     useEffect(()=>{
         if(state === 'Success'){
             //redirect('/')
+            toast.success('Inicio de sesión exitoso')
             window.location.replace('/')
         }
     },[state])
