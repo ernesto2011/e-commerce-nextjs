@@ -18,6 +18,7 @@ export const Sidebar = () => {
     //logout()
     closeMenu()
     signOut()
+    localStorage.clear()
     redirect('/')
   }
 
@@ -40,7 +41,7 @@ export const Sidebar = () => {
 
       <nav className={
         clsx(
-          'fixed p-5 right-0 top-0 w-[150px] sm:w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300',
+          'fixed p-5 right-0 top-0 w-[200px] sm:w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300',
           {
             'translate-x-full': !isSideMenuOpen
           }
@@ -93,7 +94,8 @@ export const Sidebar = () => {
             className="flex items-center mt-8 p-2 hover:bg-gray-100 rounded transition-all"
             onClick={closeMenu}
             href='/auth/login'>
-              <IoLogInOutline size={30}/>
+              <IoLogInOutline size={30}
+              />
               <span className="ml-2 text-xl ">Ingresar</span>
             </Link>
           )

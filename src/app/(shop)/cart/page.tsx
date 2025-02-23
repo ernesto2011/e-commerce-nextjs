@@ -2,6 +2,7 @@ import { Title } from "@/components";
 import Link from "next/link";
 import { ProductsInCart } from "./ui/ProductsInCart";
 import { OrderSumary } from "./ui/OrderSumary";
+import { CheckOutButton } from "./ui/CheckOutButton";
 
 export const metadata = {
   title: "Mi carrito",
@@ -26,11 +27,7 @@ export default function Cartpage() {
             <h1 className="text-2xl font-bold">Resumen de pedido</h1>
             <OrderSumary />
             <div className="mt-5 mb-2 w-full">
-              <Link 
-              className="flex btn-primary justify-center "
-              href={'/checkout/address'}>
-              Checkout
-              </Link>
+             <CheckOutButton />
             </div>
           </div>
         </div>
