@@ -2,9 +2,11 @@
 
 import { useCartStore } from "@/store";
 import { currencyFormatter } from "@/utils";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const OrderSumary = () => {
+    const router = useRouter();
     const[loading, setLoading]= useState(false)
     const { getSumaryInformation } = useCartStore()
     const { totalItems, subTotal, tax, total } = getSumaryInformation()
@@ -13,6 +15,15 @@ export const OrderSumary = () => {
     useEffect(()=>{
         setLoading(true)
     },[])
+    useEffect(() => {
+
+      if ( totalItems === 0 && loading === true )   {
+        router.replace('/empty')
+      }
+  
+  
+    },[ totalItems, loading ])
+  
     if(!loading){
         return (
             <div className="flex mb-5">

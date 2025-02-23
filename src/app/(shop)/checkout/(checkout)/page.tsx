@@ -19,7 +19,6 @@ export default function CheckoutPage() {
             <Link href={'/cart'} className="underline mb-5">
               Editar carrito
             </Link>
-          
             <ProductsInCart />
           
           </div>

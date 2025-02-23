@@ -16,7 +16,7 @@ export const ProductGridItem = ({product}:Props) => {
         <ProductImage src={displayImage}
         onMouseEnter={() => setDisplayImage(product.images[1]?? product.images[0])}
         onMouseLeave={() => setDisplayImage(product.images[0])}
-        alt={product.title} width={300} height={300} className="rounded-md"/>
+        alt={product.title} width={300} height={300} className=" object-contain rounded-md"/>
         </Link>
         <div className="p-4 flex flex-col">
             <Link 
