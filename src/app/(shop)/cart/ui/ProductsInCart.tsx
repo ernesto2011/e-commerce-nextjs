@@ -14,7 +14,7 @@ export const ProductsInCart = () => {
     const productsInCart = useCartStore(state => state.cart)
     useEffect(()=> {
         setLoading(true)
-    })
+    },[])
     const handleDeleteProduct = (product:CartProduct)=>{
       removeProductInCart(product)
       toast.info('Producto eliminado del carrito correctamente')
