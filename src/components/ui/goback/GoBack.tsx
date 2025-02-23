@@ -9,13 +9,11 @@ export const GoBack = () => {
         router.back();
     }
   return (
-    <div>
         <button 
         onClick={onGoBack}
-        className="flex items-center gap-1 text-sm text-gray-500 font-semibold mb-5 hover:underline"
+        className="flex items-center text-sm text-gray-500 font-semibold mb-4 hover:underline px-5 sm:px-0"
         >
-            <IoArrowBackOutline className="h-5=6 w-6" />Atrás
+            <IoArrowBackOutline className="h=7 w-7" />Atrás
         </button>
-    </div>
   )
 }

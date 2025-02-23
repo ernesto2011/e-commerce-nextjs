@@ -1,5 +1,5 @@
 import { getCategories, getProductBySlug } from "@/actions";
-import { Title } from "@/components";
+import { GoBack, Title } from "@/components";
 import { redirect } from "next/navigation";
 import { ProductForm } from "./ui/ProductForm";
 
@@ -22,6 +22,7 @@ export default async function ProductPage({params}:Props) {
   const title = (slug === 'new') ? 'Nuevo producto': 'Editar producto'
   return (
     <>
+    <GoBack/>
     <Title title={title}/>
     <ProductForm product={product ?? {}} categories={categories}/>
     </>

@@ -54,7 +54,11 @@ export const ProductForm = ({ product, categories }: Props) => {
 
   const onSizeChanged = (size: string) => {
     const sizes = new Set(getValues("sizes"));
-    sizes.has(size) ? sizes.delete(size) : sizes.add(size);
+    if (sizes.has(size)) {
+      sizes.delete(size);
+    } else {
+      sizes.add(size);
+    }
     setValue("sizes", Array.from(sizes));
   };
 
@@ -236,7 +240,7 @@ export const ProductForm = ({ product, categories }: Props) => {
                   src={ image.url }
                   width={300}
                   height={300}
-                  className="rounded-t shadow-md"
+                  className="rounded-t shadow-md w-full"
                 />
 
                 <button

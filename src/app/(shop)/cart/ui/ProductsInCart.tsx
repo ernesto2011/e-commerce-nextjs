@@ -17,7 +17,7 @@ export const ProductsInCart = () => {
     },[])
     const handleDeleteProduct = (product:CartProduct)=>{
       removeProductInCart(product)
-      toast.success('Producto eliminado del carrito correctamente')
+      toast.info('Producto eliminado del carrito correctamente')
     }
     
     if(!loading){

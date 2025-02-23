@@ -1,7 +1,6 @@
 'use client'
 
 import { authenticate } from "@/actions";
-import { sleep } from "@/utils";
 import clsx from "clsx";
 import Link from "next/link"
 import { useEffect } from "react";

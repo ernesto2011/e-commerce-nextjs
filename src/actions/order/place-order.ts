@@ -145,9 +145,10 @@ export const placeOrder = async (
 
 
   } catch (error) {
+    console.log(error);
     return {
       ok: false,
-      message: error,
+      message: 'ha ocurrido un error',
     };
   }
 };
