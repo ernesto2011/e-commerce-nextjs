@@ -3,6 +3,7 @@
 import { authenticate } from "@/actions";
 import clsx from "clsx";
 import Link from "next/link"
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { IoInformationCircleOutline } from "react-icons/io5";
@@ -10,15 +11,19 @@ import { toast } from "react-toastify";
 
  
  export const LoginForm = () => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
     const [state, dispatch] = useFormState(authenticate,undefined,);
     
     useEffect(()=>{
         if(state === 'Success'){
             //redirect('/')
             toast.success('Inicio de sesión exitoso')
-            window.location.replace('/')
+            const validUrl =
+            callbackUrl && callbackUrl.startsWith("/") ? callbackUrl : "/";
+          window.location.replace(validUrl);
         }
-    },[state])
+    },[state, callbackUrl])
     
    return (
     <form action={dispatch} className="flex flex-col">

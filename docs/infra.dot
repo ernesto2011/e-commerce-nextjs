@@ -1,0 +1,7 @@
+digraph INFRA {
+  node [ color = "black", fillcolor = "#E6E6E6", height =1, style = "filled,bold,rounded", fontname = "Arial" ];
+  "Cloudinary" [ label = "Cloudinary
+(CDN)", shape =cylinder, fillcolor = "#FFF5CD" ];
+  "PostgreSQL" [ label = "PostgreSQL
+(Database)", shape =cylinder, fillcolor = "#FFCFB3" ];
+}

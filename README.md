@@ -1,36 +1,161 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Teslo Shop - A Full-Featured E-commerce Platform with Next.js and Prisma
 
-## Getting Started
+A modern e-commerce platform built with Next.js 14, featuring real-time inventory management, secure PayPal payments, and a comprehensive admin dashboard for product and order management.
 
-First, run the development server:
+This application provides a complete e-commerce solution with features like user authentication, shopping cart management, order processing, and inventory tracking. It leverages Next.js server components for optimal performance and Prisma ORM for reliable database operations. The platform includes both customer-facing interfaces for shopping and administrative tools for managing products, orders, and users.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Repository Structure
+```
+.
+├── src/
+│   ├── actions/           # Server actions for data operations
+│   │   ├── auth/         # Authentication-related actions
+│   │   ├── products/     # Product management operations
+│   │   └── orders/       # Order processing and management
+│   ├── app/              # Next.js application routes and pages
+│   │   ├── (shop)/      # Main shop routes (products, cart, checkout)
+│   │   ├── admin/       # Admin dashboard routes
+│   │   └── auth/        # Authentication pages
+│   ├── components/       # Reusable React components
+│   ├── interfaces/       # TypeScript type definitions
+│   ├── store/           # Client-side state management with Zustand
+│   └── utils/           # Utility functions and helpers
+├── prisma/              # Prisma schema and migrations
+└── public/             # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage Instructions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
+- Node.js 18 or later
+- PostgreSQL database
+- PayPal developer account
+- Cloudinary account for image storage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
 
-## Learn More
+# Install dependencies
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# Set up environment variables
+cp .env.example .env.local
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Run database migrations
+npx prisma migrate dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Seed the database (development only)
+npm run seed
+```
 
-## Deploy on Vercel
+### Quick Start
+1. Configure environment variables:
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/teslo"
+NEXTAUTH_SECRET="your-secret"
+CLOUDINARY_URL="your-cloudinary-url"
+PAYPAL_CLIENT_ID="your-paypal-client-id"
+PAYPAL_SECRET="your-paypal-secret"
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Start the development server:
+```bash
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Access the application:
+- Shop: http://localhost:3000
+- Admin: http://localhost:3000/admin
+
+### More Detailed Examples
+
+1. Managing Products (Admin):
+```typescript
+// Create or update a product
+const product = await createUpdateProduct(formData);
+```
+
+2. Processing Orders:
+```typescript
+// Place a new order
+const order = await placeOrder(productIds, address);
+```
+
+### Troubleshooting
+
+1. Database Connection Issues
+- Error: `Could not connect to database`
+- Solution: 
+```bash
+# Verify database connection
+npx prisma db push
+# Check database URL in .env
+```
+
+2. Image Upload Failures
+- Error: `Failed to upload image to Cloudinary`
+- Solution:
+  - Verify Cloudinary credentials
+  - Check image file size (max 10MB)
+  - Ensure proper image format (JPG, PNG)
+
+## Data Flow
+The application follows a structured data flow for processing orders and managing inventory.
+
+```ascii
+User -> Cart -> Checkout -> Order Processing -> Payment -> Fulfillment
+  ^                                  |
+  |                                 v
+Admin Dashboard <- Inventory Management <- Order Management
+```
+
+Key component interactions:
+1. User adds products to cart (client-side state)
+2. Checkout process validates inventory and user data
+3. Order creation triggers inventory updates
+4. Payment processing through PayPal integration
+5. Admin dashboard provides real-time order and inventory management
+6. Product updates trigger cache revalidation
+7. Authentication guards protect sensitive operations
+
+## Infrastructure
+
+![Infrastructure diagram](./docs/infra.svg)
+
+### Database Resources
+- PostgreSQL database with Prisma ORM
+- Tables:
+  - User
+  - Product
+  - Order
+  - Category
+  - ProductImage
+  - UserAddress
+  - OrderAddress
+
+### Cloud Services
+- Cloudinary: Image storage and optimization
+- PayPal: Payment processing
+- PostgreSQL: Database hosting
+
+## Deployment
+1. Prerequisites:
+- Vercel account
+- PostgreSQL database
+- Environment variables configured
+
+2. Deployment Steps:
+```bash
+# Build application
+npm run build
+
+# Deploy to Vercel
+vercel --prod
+```
+
+3. Post-deployment:
+- Run database migrations
+- Verify environment variables
+- Test payment integration

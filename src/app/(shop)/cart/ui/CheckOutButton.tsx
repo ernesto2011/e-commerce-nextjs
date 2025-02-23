@@ -16,7 +16,7 @@ export const CheckOutButton = () => {
       onClick={handleClick}
       className="flex btn-primary justify-center "
       href={
-        session.status === 'authenticated' ? '/checkout/address' : '/auth/login'
+        session.status === 'authenticated' ? '/checkout/address' : '/auth/login?callbackUrl=/checkout/address'
       }
     >
       Checkout

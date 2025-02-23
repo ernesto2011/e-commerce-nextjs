@@ -4,6 +4,7 @@ import { ProductImage, QuantitySelector } from "@/components"
 import { CartProduct } from "@/interfaces"
 import { useCartStore } from "@/store"
 import Link from "next/link"
+import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 
@@ -14,12 +15,15 @@ export const ProductsInCart = () => {
     const productsInCart = useCartStore(state => state.cart)
     useEffect(()=> {
         setLoading(true)
-    },[])
+        if(productsInCart.length===0){
+          redirect('/')
+        }
+    },[productsInCart])
     const handleDeleteProduct = (product:CartProduct)=>{
       removeProductInCart(product)
       toast.info('Producto eliminado del carrito correctamente')
     }
-    
+  
     if(!loading){
         return(
             <div className="flex mb-5">
