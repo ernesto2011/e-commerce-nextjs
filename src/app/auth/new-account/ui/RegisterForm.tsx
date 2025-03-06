@@ -4,6 +4,7 @@ import Link from "next/link"
 import clsx from "clsx"
 import { login, registerUser } from "@/actions"
 import { useState } from "react"
+import { useSearchParams } from "next/navigation"
 
 type FormInputs = {
     name:string,
@@ -11,6 +12,8 @@ type FormInputs = {
     password:string
   }
 export const RegisterForm = () => {
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl");
     const [errorMessage, setErrorMessage]= useState('')
     const {register, handleSubmit, formState:{errors}} = useForm<FormInputs>()
     const onSubmit: SubmitHandler<FormInputs> = async(data) => {
@@ -22,7 +25,8 @@ export const RegisterForm = () => {
             return; 
         }
         await login(email.toLocaleLowerCase(), password)
-        window.location.replace('/')
+        const validUrl =callbackUrl && callbackUrl.startsWith("/") ? callbackUrl : "/";
+        window.location.replace(validUrl);
     }
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">

@@ -63,7 +63,9 @@ import { toast } from "react-toastify";
     </div>
 
     <Link
-      href="/auth/new-account" 
+      href={
+        callbackUrl && callbackUrl.startsWith("/") ?`/auth/new-account?callbackUrl=${callbackUrl}` :  '/auth/new-account'
+      }
       className="btn-secondary text-center">
       Crear una nueva cuenta
     </Link>

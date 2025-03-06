@@ -12,7 +12,7 @@ export default async function Orders() {
   }
   return (
     <>
-      <Title title="Todas las ordenes" />
+      <Title title="Administración de usuarios" />
 
       <div className="mb-10">
        <UsersTable users={users} />
