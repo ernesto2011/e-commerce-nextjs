@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "Teslo | Shop",
     images: [
       {
-        url: "https://res.cloudinary.com/pruebas-test/image/upload/v1741460455/Galaxy-Tab-S7-e-commerce-nextjs-roots.vercel.app_kpw00q.png",
+        url: "https://res.cloudinary.com/pruebas-test/image/upload/v1740434512/Macbook-Air-e-commerce-nextjs-roots.vercel.app_xe7vbq.png",
         width: 1920,
         height: 1080,
       },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Teslo | Shop",
     description: "tienda virtual de productos",
-    images: ["https://res.cloudinary.com/pruebas-test/image/upload/v1741460455/Galaxy-Tab-S7-e-commerce-nextjs-roots.vercel.app_kpw00q.png"],
+    images: ["https://res.cloudinary.com/pruebas-test/image/upload/v1740434512/Macbook-Air-e-commerce-nextjs-roots.vercel.app_xe7vbq.png"],
   },
 };
 
