@@ -9,6 +9,30 @@ export const metadata: Metadata = {
     default: 'Teslo | Shop'
   },
   description: "tienda virtual de productos",
+  icons: {
+    icon: "/teslo.ico",
+  },
+  keywords: ["teslo", "shop", "productos", "tienda", "ecommerce"],
+  openGraph: {
+    title: "Teslo | Shop",
+    description: "tienda virtual de productos",
+    url: "https://e-commerce-nextjs-roots.vercel.app/",
+    siteName: "Teslo | Shop",
+    images: [
+      {
+        url: "https://res.cloudinary.com/pruebas-test/image/upload/v1741460455/Galaxy-Fold2-e-commerce-nextjs-roots.vercel.app_rpsjfm.png",
+        width: 1920,
+        height: 1080,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Teslo | Shop",
+    description: "tienda virtual de productos",
+    images: ["https://res.cloudinary.com/pruebas-test/image/upload/v1741460455/Galaxy-Fold2-e-commerce-nextjs-roots.vercel.app_rpsjfm.png"],
+  },
 };
 
 export default function RootLayout({
