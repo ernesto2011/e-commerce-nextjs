@@ -7,7 +7,7 @@ export const getUserAddress = async(userId:string)=>{
         const address = await prisma.userAddress.findUnique({
             where: {userId}
         })
-        if(address == null) return null
+        if(!address) return null
         const  { countryId, address2,...rest}= address
         return {
             ...rest,
