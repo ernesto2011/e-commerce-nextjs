@@ -14,7 +14,7 @@ export default async function Orders() {
     <>
       <Title title="Administración de usuarios" />
 
-      <div className="mb-10">
+      <div className="mb-10 px-2  md:p-0">
        <UsersTable users={users} />
       </div>
     </>
