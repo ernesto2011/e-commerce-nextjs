@@ -57,7 +57,7 @@ export default async function OrderByIdPage({params}:Props) {
             <div className="grid grid-cols-2">
               <span>No. de productos</span>
               <span className="text-right">
-                {order!.itemsInOrder ===1 ? ' 1 artículo': `${order?.itemsInOrder} artículos`}
+                {order!.itemsInOrder === 1 ? ' 1 artículo': `${order?.itemsInOrder} artículos`}
               </span>
 
               <span>Subtotal</span>
